@@ -26,7 +26,7 @@ app.includeStandardAdditions = true;
 //app.activate();
 
 //Change this to true for debugging through Notification System instead of console output
-var internal = false;
+var internal = false; //Not working, because internally only applet is working and this again throws a violation error
 var debug = function(msg){
   if(internal) {
     app.displayNotification(msg);
