@@ -24,17 +24,8 @@ SOFTWARE.*/
 var app = Application('iTunes');
 app.includeStandardAdditions = true;
 //app.activate();
-
-//Change this to true for debugging through Notification System instead of console output
-var internal = false; //Not working, because internally only applet is working and this again throws a violation error
-var debug = function(msg){
-  if(internal) {
-    app.displayNotification(msg);
-  }
-  else {
-    console.log(msg);
-  }
-}
+var cApp = Application.currentApplication();
+cApp.includeStandardAdditions = true;
 
 /**
  * Create a LastFm API Request from a set of options
@@ -53,10 +44,6 @@ var sendRequest = function(options){
     }
   }
 
-  if (cApp === undefined) {
-    var cApp = Application.currentApplication();
-    cApp.includeStandardAdditions = true;
-  }
   console.log(url);
   return JSON.parse(cApp.doShellScript("curl \"" + encodeURI(url) + "\""));
 }
@@ -85,9 +72,14 @@ else {
   }
   else {
     //Iterate over Selection
-    var aTrack, i, len;
-    for (i = 0, len = sel.length; i < len; i++) {
+    var aTrack, i, changed;
+    var len = sel.length;
+    cApp.activate();
+    Progress.totalUnitCount = len;
+    Progress.description = 'Processing Tracks';
+    for (i = changed = 0; i < len; i++) {
       aTrack = sel[i];
+      Progress.additionalDescription = 'Requesting track ' + i + ' of ' + len + ' : ' + aTrack.artist() + ' - ' + aTrack.name();
 
       //Request TrackInfo from LastFM (switch for iTunes Script Build)
       var response = sendRequest({
@@ -101,24 +93,27 @@ else {
 
       //Check for error in response
       if (response.error != undefined) {
-        debug('Error: ' + response.message);
+        cApp.displayAlert('Error: ' + response.message);
       }
       else if (response.track.userplaycount === undefined){
-        debug(aTrack.artist() + ' - ' + aTrack.name() + ' was never scrobbled by ' + user);
+        console.log(aTrack.artist() + ' - ' + aTrack.name() + ' was never scrobbled by ' + user);
       }
       else {
         var playCount = response.track.userplaycount;
 
         //Set the playcount if higher
         if (aTrack.playedCount() < playCount) {
-          debug('Set ' + aTrack.artist() + ' - ' + aTrack.name() + ' from ' + aTrack.playedCount() + ' to ' + playCount + ' plays');
+          console.log('Set ' + aTrack.artist() + ' - ' + aTrack.name() + ' from ' + aTrack.playedCount() + ' to ' + playCount + ' plays');
           aTrack.playedCount = playCount;
+          changed++;
         }
         //Leave playcount as is
         else {
-          debug( aTrack.artist() + ' - ' + aTrack.name() + ' chilled at ' + aTrack.playedCount() + ' >= ' + playCount);
+          console.log( aTrack.artist() + ' - ' + aTrack.name() + ' chilled at ' + aTrack.playedCount() + ' >= ' + playCount);
         }
       }
+      Progress.completedUnitCount = i + 1;
     }
+    app.displayDialog('Finished and updated ' + changed + ' tracks.');
   }
 }
