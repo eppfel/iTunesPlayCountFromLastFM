@@ -31,10 +31,10 @@ cApp.includeStandardAdditions = true;
  * Create a LastFm API Request from a set of options
  */
 var api = 'd90f32372891a7ba621058cafe2b467a'; //Please be responsible with my api key, if you try something new request your own
-var user = '' //hard set your username
+var user = ''; //hard set your username
 var cApp;
 
-var sendRequest = function(options){
+var sendRequest = function(options) {
   var url = "http://ws.audioscrobbler.com/2.0/";
   var i = 0;
   for (var k in options) {
@@ -46,7 +46,7 @@ var sendRequest = function(options){
 
   console.log(url);
   return JSON.parse(cApp.doShellScript("curl \"" + encodeURI(url) + "\""));
-}
+};
 
 /**
  * Main Loop
@@ -67,8 +67,8 @@ else {
     user    : user,
     format  : 'json'
   });
-  if (userx.error != undefined) {
-    app.displayAlert('Error LastFm User: ' + userx.message)
+  if (userx.error !== undefined) {
+    app.displayAlert('Error LastFm User: ' + userx.message);
   }
   else {
     //Iterate over Selection
@@ -92,8 +92,8 @@ else {
       });
 
       //Check for error in response
-      if (response.error != undefined) {
-        cApp.displayAlert('Error: ' + response.message);
+      if (response.error !== undefined) {
+        console.log('Error: ' + response.message);
       }
       else if (response.track.userplaycount === undefined){
         console.log(aTrack.artist() + ' - ' + aTrack.name() + ' was never scrobbled by ' + user);

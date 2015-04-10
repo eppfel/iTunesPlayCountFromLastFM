@@ -19,8 +19,9 @@ The script is written in vanilla JavaScript and cannot be directly opened in Scr
 
 If you like to work in Sublime Text, I created a package for the Build System: [JXASublimeText](https://github.com/dharma-guardian/JXASublimeText).
 
-## Useful Resources
-1. [JavaScript for Automation Release Notes](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/#//apple_ref/doc/uid/TP40014508-CH109-SW11)
-2. ['Getting Started with JavaScript for Automation on Yosemite'
+## Helpful Resources
+* ['Getting Started with JavaScript for Automation on Yosemite'
 by Alex Guyot](http://www.macstories.net/tutorials/getting-started-with-javascript-for-automation-on-yosemite/)
-3. [JXA-Cookbook](https://github.com/dtinth/JXA-Cookbook)
+* [JXA-Cookbook](https://github.com/dtinth/JXA-Cookbook)
+* [JavaScript for Automation Release Notes](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/#//apple_ref/doc/uid/TP40014508-CH109-SW11)
+* [Building OS X Apps with JavaScript](http://tylergaw.com/articles/building-osx-apps-with-js) by [Tyler Gaw](http://tylergaw.com/)
