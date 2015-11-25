@@ -2,7 +2,7 @@
 I used the JavaScript for Automation on Mac (JXA) to create an iTunes script, that pulls your personal last.fm play counts.
 
 ## System Requirements
-This code works only on MAC OS X Yosemite (10.10), due to JavaScript being introduced just to this platform, yet. I will upload a build release for earlier OSX versions.
+This code works only since MAC OS X Yosemite (>=10.10), due to JavaScript being introduced just to this platform, yet. I will upload a build release for earlier OSX versions.
 
 ## Usage
 
