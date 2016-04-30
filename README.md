@@ -2,16 +2,16 @@
 I used the JavaScript for Automation on Mac (JXA) to create an iTunes script, that pulls your personal last.fm play counts.
 
 ## System Requirements
-This code works only since MAC OS X Yosemite (>=10.10), due to JavaScript being introduced just to this platform, yet. I will upload a build release for earlier OSX versions.
+This code works only with MAC OS X Yosemite and above (>=10.10), due to JavaScript being introduced just to this platform, yet. ~~I will upload a build release for earlier OSX versions.~~
 
 ## Usage
 
 ### Manual
-1. Download the latest release, open the disk image and copy the app inside somewhere on your Mac (Scripts in the Folder `~/Library/iTunes/Scripts/`will be displayed in the iTunes script menu).
+1. Download the latest release, extract the .zip and copy the app somewhere on your Mac (Scripts in the Folder `~/Library/iTunes/Scripts/`will be displayed in the iTunes script menu).
 2. Select the tracks you like to sync in iTunes.
-3. Start the script.
-4. You are asked to enter your last.fm user name.
-5. The scripts runs through all the selected tracks.
+3. Start the app.
+4. You are asked to enter your last.fm username.
+5. The scripts runs through all the selected tracks. (Maybe the status window of the app is in the background)
 
 ### Build/Run on Your Own
 **The script causes a timeout when run directly in iTunes, when not build as an applet.**
